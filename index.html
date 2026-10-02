@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>আমাদের স্বাস্থ্যসেবা — আপনার এলাকার চিকিৎসা ও জরুরি সহায়তা</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1C2621;
+    --paper:#F7F5EF;
+    --paper-raised:#FFFFFF;
+    --teal:#0F5C4C;
+    --teal-deep:#0A4137;
+    --amber:#E1A83C;
+    --amber-deep:#B9852A;
+    --brick:#B33A2E;
+    --brick-deep:#8E2C22;
+    --line:#DCD5C4;
+    --muted:#5B6560;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Hind Siliguri', sans-serif;
+    line-height:1.6;
+  }
+  h1,h2,h3,.display{
+    font-family:'Tiro Bangla', serif;
+    font-weight:400;
+    margin:0;
+  }
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 24px;}
+
+  /* ---------- Header ---------- */
+  header{
+    background:var(--paper-raised);
+    border-bottom:1px solid var(--line);
+    position:sticky; top:0; z-index:50;
+  }
+  .nav-row{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 0;
+  }
+  .brand{display:flex; align-items:center; gap:10px;}
+  .brand-mark{
+    width:38px; height:38px; border-radius:9px;
+    background:var(--teal);
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0;
+  }
+  .brand-mark svg{width:20px; height:20px;}
+  .brand-text .name{font-family:'Tiro Bangla', serif; font-size:19px; color:var(--teal-deep);}
+  .brand-text .sub{font-size:11.5px; color:var(--muted); margin-top:1px;}
+  nav.links{display:flex; gap:28px; align-items:center;}
+  nav.links a{font-size:15px; color:var(--ink); position:relative; padding:4px 0;}
+  nav.links a:hover{color:var(--teal-deep);}
+  .nav-actions{display:flex; gap:10px; align-items:center;}
+  .btn{
+    display:inline-flex; align-items:center; gap:6px;
+    padding:9px 18px; border-radius:7px; font-size:14.5px;
+    border:1px solid transparent; cursor:pointer;
+  }
+  .btn-primary{background:var(--teal); color:#fff;}
+  .btn-primary:hover{background:var(--teal-deep);}
+  .btn-ghost{background:transparent; color:var(--teal-deep); border-color:var(--line);}
+  .btn-ghost:hover{border-color:var(--teal);}
+  .btn-brick{background:var(--brick); color:#fff;}
+  .btn-brick:hover{background:var(--brick-deep);}
+  .menu-toggle{display:none; background:none; border:none; cursor:pointer;}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding:64px 0 48px;
+    background:
+      radial-gradient(680px 340px at 88% -10%, rgba(225,168,60,0.16), transparent 60%),
+      var(--paper);
+    border-bottom:1px solid var(--line);
+  }
+  .hero-grid{display:grid; grid-template-columns:1.15fr 0.85fr; gap:52px; align-items:start;}
+  .eyebrow-line{
+    display:flex; align-items:center; gap:10px; margin-bottom:18px;
+  }
+  .eyebrow-line .dot{width:8px; height:8px; border-radius:50%; background:var(--brick);}
+  .eyebrow-line span{font-size:13.5px; color:var(--brick); letter-spacing:.2px;}
+  .hero h1{font-size:44px; line-height:1.28; color:var(--teal-deep); max-width:620px;}
+  .hero p.tagline{
+    margin-top:16px; font-size:17px; color:var(--muted); max-width:480px;
+  }
+  .search-card{
+    margin-top:30px; background:var(--paper-raised);
+    border:1px solid var(--line); border-radius:12px; padding:22px;
+  }
+  .search-card h3{font-size:15px; color:var(--ink); margin-bottom:14px; font-family:'Hind Siliguri',sans-serif; font-weight:600;}
+  .select-row{display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px;}
+  select{
+    width:100%; padding:11px 12px; border-radius:7px; border:1px solid var(--line);
+    background:#fff; font-family:inherit; font-size:14.5px; color:var(--ink);
+  }
+  .search-card .go{margin-top:12px; width:100%; justify-content:center; padding:12px;}
+
+  .hero-side{
+    background:var(--teal-deep); border-radius:16px; padding:26px;
+    color:#fff; position:relative; overflow:hidden;
+  }
+  .hero-side::after{
+    content:""; position:absolute; right:-40px; bottom:-40px; width:180px; height:180px;
+    border-radius:50%; background:rgba(225,168,60,0.18);
+  }
+  .hero-side h3{font-family:'Tiro Bangla',serif; font-size:19px; margin-bottom:16px; position:relative;}
+  .route{position:relative; z-index:1;}
+  .route-item{
+    display:flex; align-items:center; gap:12px; padding:11px 0;
+    border-bottom:1px dashed rgba(255,255,255,0.18);
+  }
+  .route-item:last-child{border-bottom:none;}
+  .route-ic{
+    width:34px; height:34px; border-radius:8px; background:rgba(255,255,255,0.12);
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  }
+  .route-ic svg{width:17px; height:17px;}
+  .route-item .rt{font-size:14.5px;}
+  .route-item .rt .lbl{opacity:.75; font-size:12px; display:block; margin-bottom:1px;}
+
+  /* ---------- Stats ---------- */
+  .stats{padding:34px 0; border-bottom:1px solid var(--line);}
+  .stats-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:0;}
+  .stat{padding:0 22px; border-left:1px solid var(--line);}
+  .stat:first-child{border-left:none; padding-left:0;}
+  .stat .num{font-family:'Tiro Bangla',serif; font-size:30px; color:var(--teal-deep);}
+  .stat .lbl{font-size:13.5px; color:var(--muted); margin-top:3px;}
+
+  /* ---------- Section heading ---------- */
+  .section{padding:56px 0;}
+  .section-head{
+    display:flex; justify-content:space-between; align-items:flex-end;
+    margin-bottom:26px; gap:20px; flex-wrap:wrap;
+  }
+  .section-head h2{font-size:27px; color:var(--teal-deep);}
+  .section-head p{font-size:14.5px; color:var(--muted); margin-top:6px;}
+  .see-all{font-size:14px; color:var(--teal-deep); border-bottom:1px solid var(--teal-deep); padding-bottom:2px; white-space:nowrap;}
+
+  /* Emergency belt */
+  .emg{background:#FBF3EC; border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .emg-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:22px;}
+  .emg-card{
+    background:var(--paper-raised); border:1px solid var(--line); border-radius:12px;
+    padding:20px; cursor:pointer; transition:border-color .15s, transform .15s;
+  }
+  .emg-card:hover{border-color:var(--brick); transform:translateY(-2px);}
+  .emg-ic{
+    width:42px; height:42px; border-radius:9px; background:rgba(179,58,46,0.1);
+    display:flex; align-items:center; justify-content:center; margin-bottom:14px;
+  }
+  .emg-ic svg{width:22px; height:22px;}
+  .emg-card h4{font-size:15.5px; font-weight:600; margin-bottom:5px;}
+  .emg-card p{font-size:13px; color:var(--muted);}
+
+  /* Directory tabs */
+  .tabs{display:flex; gap:8px; margin-bottom:24px; border-bottom:1px solid var(--line);}
+  .tab-btn{
+    padding:10px 4px; margin-right:22px; background:none; border:none; cursor:pointer;
+    font-family:'Hind Siliguri',sans-serif; font-size:15.5px; color:var(--muted);
+    border-bottom:2px solid transparent; margin-bottom:-1px;
+  }
+  .tab-btn.active{color:var(--teal-deep); border-color:var(--teal-deep); font-weight:600;}
+  .tab-panel{display:none;}
+  .tab-panel.active{display:block;}
+
+  .list-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px;}
+  .entry-card{
+    background:var(--paper-raised); border:1px solid var(--line); border-radius:12px; padding:18px;
+    display:flex; gap:13px;
+  }
+  .avatar{
+    width:46px; height:46px; border-radius:9px; background:var(--teal); color:#fff;
+    display:flex; align-items:center; justify-content:center; font-family:'Tiro Bangla',serif;
+    font-size:17px; flex-shrink:0;
+  }
+  .entry-body{flex:1; min-width:0;}
+  .entry-body .name{font-size:15.5px; font-weight:600;}
+  .entry-body .meta{font-size:12.5px; color:var(--muted); margin-top:2px;}
+  .badge{
+    display:inline-block; font-size:11px; padding:2px 8px; border-radius:20px;
+    margin-top:8px;
+  }
+  .badge.open{background:#E4F1EA; color:var(--teal-deep);}
+  .badge.closed{background:#F3E4E1; color:var(--brick-deep);}
+  .entry-body .num{font-size:13px; color:var(--teal-deep); margin-top:6px; display:inline-block;}
+
+  /* Blood section */
+  .blood{background:var(--teal-deep); color:#fff;}
+  .blood .section-head h2, .blood .section-head p{color:#fff;}
+  .blood .section-head p{opacity:.75;}
+  .blood-grid{display:grid; grid-template-columns:0.95fr 1.05fr; gap:36px; align-items:start;}
+  .bform{background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.14); border-radius:14px; padding:26px;}
+  .bform h3{font-family:'Hind Siliguri',sans-serif; font-weight:600; font-size:16px; margin-bottom:16px;}
+  .bform .row{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:10px;}
+  .bform select, .bform input{
+    width:100%; padding:11px 12px; border-radius:7px; border:1px solid rgba(255,255,255,0.2);
+    background:rgba(255,255,255,0.08); color:#fff; font-family:inherit; font-size:14.5px;
+  }
+  .bform select option{color:#1C2621;}
+  .bform ::placeholder{color:rgba(255,255,255,0.55);}
+  .bform .go{width:100%; justify-content:center; padding:12px; margin-top:6px;}
+
+  .donor-results{display:flex; flex-direction:column; gap:10px;}
+  .donor-row{
+    background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.14);
+    border-radius:10px; padding:14px 16px; display:flex; align-items:center; gap:14px;
+  }
+  .bg-chip{
+    width:44px; height:44px; border-radius:9px; background:var(--brick);
+    display:flex; align-items:center; justify-content:center; font-weight:700; font-size:14px;
+    flex-shrink:0;
+  }
+  .donor-row .dname{font-size:15px; font-weight:600;}
+  .donor-row .dmeta{font-size:12.5px; opacity:.7; margin-top:2px;}
+  .donor-row .call{margin-left:auto; font-size:13px; padding:8px 14px;}
+  .empty-note{font-size:13.5px; opacity:.65; padding:18px 4px;}
+
+  /* Awareness */
+  .aware-grid{display:grid; grid-template-columns:1.1fr 0.9fr; gap:40px; align-items:center;}
+  .aware-list{display:flex; flex-direction:column; gap:14px; margin-top:18px;}
+  .aware-item{display:flex; gap:12px; align-items:flex-start;}
+  .aware-item .ic{
+    width:26px; height:26px; border-radius:50%; background:var(--amber);
+    display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:2px;
+  }
+  .aware-item .ic svg{width:13px; height:13px;}
+  .aware-visual{
+    background:#EFE6D3; border-radius:16px; padding:34px; text-align:center;
+  }
+  .aware-visual svg{width:100%; max-width:230px; margin:0 auto;}
+
+  /* Footer */
+  footer{background:var(--paper-raised); border-top:1px solid var(--line); padding:46px 0 22px;}
+  .foot-grid{display:grid; grid-template-columns:1.3fr 1fr 1fr 1fr; gap:32px;}
+  .foot-brand .name{font-family:'Tiro Bangla',serif; font-size:19px; color:var(--teal-deep);}
+  .foot-brand p{font-size:13.5px; color:var(--muted); margin-top:10px; max-width:280px;}
+  .foot-col h5{font-size:14px; font-weight:600; margin-bottom:12px;}
+  .foot-col a{display:block; font-size:13.5px; color:var(--muted); margin-bottom:9px;}
+  .foot-col a:hover{color:var(--teal-deep);}
+  .foot-bottom{
+    margin-top:38px; padding-top:18px; border-top:1px solid var(--line);
+    display:flex; justify-content:space-between; font-size:12.5px; color:var(--muted); flex-wrap:wrap; gap:8px;
+  }
+
+  @media(max-width:920px){
+    nav.links, .nav-actions .btn-ghost{display:none;}
+    .menu-toggle{display:block;}
+    .hero-grid, .blood-grid, .aware-grid{grid-template-columns:1fr;}
+    .hero h1{font-size:32px;}
+    .select-row{grid-template-columns:1fr;}
+    .stats-grid{grid-template-columns:repeat(2,1fr); row-gap:18px;}
+    .stat{border-left:none !important; padding-left:0 !important;}
+    .emg-grid{grid-template-columns:repeat(2,1fr);}
+    .list-grid{grid-template-columns:1fr;}
+    .foot-grid{grid-template-columns:1fr 1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav-row">
+    <div class="brand">
+      <div class="brand-mark">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 21s-7.5-4.6-10-9.2C.6 8.3 2.2 4.8 5.6 4.1c2-.4 3.9.5 5 2.1 1.1-1.6 3-2.5 5-2.1 3.4.7 5 4.2 3.6 7.7C19.5 16.4 12 21 12 21z" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/><path d="M12 8v6M9 11h6" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </div>
+      <div class="brand-text">
+        <div class="name">আমাদের স্বাস্থ্যসেবা</div>
+        <div class="sub">আপনার এলাকার চিকিৎসা ও জরুরি সহায়তা</div>
+      </div>
+    </div>
+    <nav class="links">
+      <a href="#home">হোমনা</a>
+      <a href="#pharmacy">ফার্মেসি</a>
+      <a href="#care">প্রাথমিক সেবা</a>
+      <a href="#doctors">ডাক্তার</a>
+      <a href="#blood">রক্তদাতা</a>
+      <a href="#emergency">জরুরি সহায়তা</a>
+      <a href="#contact">যোগাযোগ</a>
+    </nav>
+    <div class="nav-actions">
+      <a href="#" class="btn btn-ghost">লগইন</a>
+      <a href="#" class="btn btn-primary">নিবন্ধন করুন</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero" id="home">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow-line"><span class="dot"></span><span>জরুরি প্রয়োজনে সবার আগে</span></div>
+      <h1>আপনার ও আপনার পরিবারের স্বাস্থ্যসেবা, এখন হাতের মুঠোয়</h1>
+      <p class="tagline">এলাকার হাসপাতাল, ফার্মেসি, ডাক্তার আর রক্তদাতার তথ্য এক জায়গায় — জরুরি মুহূর্তে সময় নষ্ট না করে সাহায্য খুঁজে নিন।</p>
+
+      <div class="search-card">
+        <h3>আপনার এলাকা নির্বাচন করুন</h3>
+        <div class="select-row">
+          <select id="selDivision">
+            <option>বিভাগ নির্বাচন করুন</option>
+            <option>কুমিল্লা</option>
+            <option>রাজশাহী</option>
+            <option>ঢাকা</option>
+            <option>চট্টগ্রাম</option>
+          </select>
+          <select id="selUpazila">
+            <option>উপজেলা নির্বাচন করুন</option>
+            <option>হোমনা</option>
+            <option>তিতাস</option>
+            <option>মুরাদনগর</option>
+          </select>
+          <select id="selVillage">
+            <option>গ্রাম / এলাকা নির্বাচন করুন</option>
+            <option>রামপুর</option>
+            <option>হোমনা</option>
+            <option>দুলালপুর</option>
+          </select>
+        </div>
+        <button class="btn btn-primary go" onclick="alert('আপনার এলাকার তথ্য দেখানো হচ্ছে — ডেমো সংস্করণ।')">
+          তথ্য খুঁজুন
+        </button>
+      </div>
+    </div>
+
+    <div class="hero-side">
+      <h3>জরুরি সহায়তা (এক ক্লিকে)</h3>
+      <div class="route">
+        <div class="route-item">
+          <div class="route-ic"><svg viewBox="0 0 24 24" fill="none"><path d="M3 13h11l2 4h3a2 2 0 002-2v-3l-3-4h-6l-2 5H3z" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/><circle cx="7.5" cy="17.5" r="1.5" fill="#fff"/><circle cx="17" cy="17.5" r="1.5" fill="#fff"/></svg></div>
+          <div class="rt"><span class="lbl">দ্রুততম সেবা</span>অ্যাম্বুলেন্স কল করুন</div>
+        </div>
+        <div class="route-item">
+          <div class="route-ic"><svg viewBox="0 0 24 24" fill="none"><path d="M4 21V9l8-5 8 5v12" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/><path d="M9 21v-6h6v6" stroke="#fff" stroke-width="1.5"/></svg></div>
+          <div class="rt"><span class="lbl">২ কিমির মধ্যে</span>নিকটস্থ হাসপাতাল</div>
+        </div>
+        <div class="route-item">
+          <div class="route-ic"><svg viewBox="0 0 24 24" fill="none"><path d="M4 8h16v11a2 2 0 01-2 2H6a2 2 0 01-2-2V8z" stroke="#fff" stroke-width="1.5"/><path d="M9 8V6a3 3 0 016 0v2M12 12v5M9.5 14.5h5" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+          <div class="rt"><span class="lbl">খোলা এখন</span>জরুরি ফার্মেসি</div>
+        </div>
+        <div class="route-item">
+          <div class="route-ic"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3s6 6.5 6 11a6 6 0 11-12 0c0-4.5 6-11 6-11z" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+          <div class="rt"><span class="lbl">তাৎক্ষণিক তালিকা</span>রক্তের দাতা খুঁজুন</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="wrap stats-grid">
+    <div class="stat"><div class="num">২৫৮+</div><div class="lbl">নিবন্ধিত হাসপাতাল/ক্লিনিক</div></div>
+    <div class="stat"><div class="num">১২৪৫+</div><div class="lbl">ফার্মেসি সারা দেশে</div></div>
+    <div class="stat"><div class="num">৫৬৩+</div><div class="lbl">প্রাথমিক সেবা প্রদানকারী</div></div>
+    <div class="stat"><div class="num">৩২৮০+</div><div class="lbl">সক্রিয় রক্তদাতা</div></div>
+  </div>
+</section>
+
+<section class="emg" id="emergency">
+  <div class="wrap section">
+    <div class="section-head">
+      <div>
+        <h2>জরুরি অবস্থায় প্রথম পদক্ষেপ</h2>
+        <p>একটি ট্যাপেই আপনার এলাকার জরুরি সহায়তার সাথে যুক্ত হোন</p>
+      </div>
+    </div>
+    <div class="emg-grid">
+      <div class="emg-card" onclick="alert('অ্যাম্বুলেন্স নম্বরে কল দেওয়া হচ্ছে... (01766-306868)">
+        <div class="emg-ic"><svg viewBox="0 0 24 24" fill="none"><path d="M3 13h11l2 4h3a2 2 0 002-2v-3l-3-4h-6l-2 5H3z" stroke="#B33A2E" stroke-width="1.6" stroke-linejoin="round"/><circle cx="7.5" cy="17.5" r="1.6" stroke="#B33A2E" stroke-width="1.6"/><circle cx="17" cy="17.5" r="1.6" stroke="#B33A2E" stroke-width="1.6"/></svg></div>
+        <h4>অ্যাম্বুলেন্স</h4>
+        <p>নিকটস্থ ও ২৪ ঘণ্টা সচল অ্যাম্বুলেন্স নম্বর</p>
+      </div>
+      <div class="emg-card" onclick="document.getElementById('care').scrollIntoView({behavior:'smooth'})">
+        <div class="emg-ic"><svg viewBox="0 0 24 24" fill="none"><path d="M4 21V9l8-5 8 5v12" stroke="#B33A2E" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 21v-6h6v6" stroke="#B33A2E" stroke-width="1.6"/></svg></div>
+        <h4>নিকটস্থ হাসপাতাল</h4>
+        <p>আপনার এলাকার হাসপাতাল ও ক্লিনিকের ঠিকানা</p>
+      </div>
+      <div class="emg-card" onclick="document.getElementById('pharmacy').scrollIntoView({behavior:'smooth'})">
+        <div class="emg-ic"><svg viewBox="0 0 24 24" fill="none"><path d="M4 8h16v11a2 2 0 01-2 2H6a2 2 0 01-2-2V8z" stroke="#B33A2E" stroke-width="1.6"/><path d="M9 8V6a3 3 0 016 0v2M12 12v5M9.5 14.5h5" stroke="#B33A2E" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+        <h4>অনু ফার্মেসি</h4>
+        <p>রাতেও খোলা থাকা ফার্মেসির তালিকা</p>
+      </div>
+      <div class="emg-card" onclick="document.getElementById('blood').scrollIntoView({behavior:'smooth'})">
+        <div class="emg-ic"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3s6 6.5 6 11a6 6 0 11-12 0c0-4.5 6-11 6-11z" stroke="#B33A2E" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
+        <h4>জরুরি রক্ত প্রয়োজন</h4>
+        <p>রক্তের গ্রুপ অনুযায়ী দাতা খুঁজুন</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="directory">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <h2>আপনার এলাকার স্বাস্থ্যসেবা তালিকা</h2>
+        <p>ফার্মেসি, প্রাথমিক সেবা কেন্দ্র ও ডাক্তারদের হালনাগাদ তথ্য</p>
+      </div>
+    </div>
+
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="pharmacy">ফার্মেসি</button>
+      <button class="tab-btn" data-tab="care">প্রাথমিক সেবা</button>
+      <button class="tab-btn" data-tab="doctors">ডাক্তার</button>
+    </div>
+
+    <div class="tab-panel active" id="pharmacy">
+      <div class="list-grid">
+        <div class="entry-card">
+          <div class="avatar">মা</div>
+          <div class="entry-body">
+            <div class="name">মা ফার্মেসি</div>
+            <div class="meta">রামপুর বাজার, রামপুর</div>
+            <div class="num">📞 ০১৭১২-৩৪৫৬৭৮</div><br>
+            <span class="badge open">খোলা আছে</span>
+          </div>
+        </div>
+        <div class="entry-card">
+          <div class="avatar">জননী</div>
+          <div class="entry-body">
+            <div class="name">জননী ফার্মেসি</div>
+            <div class="meta">মেইন রোড, রামপুর</div>
+            <div class="num">📞 ০১৮১২-৩৪৫৬৭৯</div><br>
+            <span class="badge open">খোলা আছে</span>
+          </div>
+        </div>
+        <div class="entry-card">
+          <div class="avatar">সেবা</div>
+          <div class="entry-body">
+            <div class="name">সেবা ফার্মেসি</div>
+            <div class="meta">কলেজ রোড, থোমনা</div>
+            <div class="num">📞 ০১৭৯৮-৭৬৫৪৩২</div><br>
+            <span class="badge closed">রাত ১০টা পর্যন্ত বন্ধ</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="care">
+      <div class="list-grid">
+        <div class="entry-card">
+          <div class="avatar">ক্লি</div>
+          <div class="entry-body">
+            <div class="name">কমিউনিটি ক্লিনিক, দুলালপুর</div>
+            <div class="meta">সকাল ৮টা - বিকাল ৪টা</div>
+            <div class="num">📞 ০১৩১৩-১২৩৪৫৬</div>
+          </div>
+        </div>
+        <div class="entry-card">
+          <div class="avatar">স্বা</div>
+          <div class="entry-body">
+            <div class="name">স্বাস্থ্য ফাউন্ডেশন সেবা কেন্দ্র</div>
+            <div class="meta">সকাল ৯টা - বিকাল ৫টা</div>
+            <div class="num">📞 ০১৭১১-২২৩৩৪৪</div>
+          </div>
+        </div>
+        <div class="entry-card">
+          <div class="avatar">প্রা</div>
+          <div class="entry-body">
+            <div class="name">প্রাথমিক স্বাস্থ্য সেবা কেন্দ্র</div>
+            <div class="meta">সকাল ৯টা - বিকাল ৬টা</div>
+            <div class="num">📞 ০১৬১১-২২৩৩৪৪</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="doctors">
+      <div class="list-grid">
+        <div class="entry-card">
+          <div class="avatar">ডা</div>
+          <div class="entry-body">
+            <div class="name">ডা. মো. এহসানুল হক</div>
+            <div class="meta">এমবিবিএস, প্রাথমিক চিকিৎসক · রামপুর</div>
+            <div class="num">📞 ০১৭১৬-১১১১১১</div>
+          </div>
+        </div>
+        <div class="entry-card">
+          <div class="avatar">ডা</div>
+          <div class="entry-body">
+            <div class="name">ডা. সুমাইয়া আক্তার</div>
+            <div class="meta">এমবিবিএস, প্রাথমিক চিকিৎসক · দুলালপুর</div>
+            <div class="num">📞 ০১৮২৭-২২২২২২</div>
+          </div>
+        </div>
+        <div class="entry-card">
+          <div class="avatar">ডা</div>
+          <div class="entry-body">
+            <div class="name">ডা. মো. আহনাফ</div>
+            <div class="meta">এমবিবিএস, প্রাথমিক চিকিৎসক · হোমনা</div>
+            <div class="num">📞 ০১৭৩৯-৩৩৩৩৩৩</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="blood" id="blood">
+  <div class="wrap section">
+    <div class="section-head">
+      <div>
+        <h2>জরুরি রক্তের ব্যবস্থা</h2>
+        <p>রক্তের গ্রুপ ও এলাকা দিয়ে খুঁজুন, তালিকা থেকে সরাসরি দাতার সাথে যোগাযোগ করুন</p>
+      </div>
+    </div>
+
+    <div class="blood-grid">
+      <div class="bform">
+        <h3>দাতা খুঁজুন</h3>
+        <div class="row">
+          <select id="bgSelect">
+            <option value="">রক্তের গ্রুপ</option>
+            <option value="A+">A+</option>
+            <option value="A-">A-</option>
+            <option value="B+">B+</option>
+            <option value="B-">B-</option>
+            <option value="O+">O+</option>
+            <option value="O-">O-</option>
+            <option value="AB+">AB+</option>
+            <option value="AB-">AB-</option>
+          </select>
+          <select id="areaSelect">
+            <option value="">এলাকা</option>
+            <option value="রামপুর">রামপুর</option>
+            <option value="হোমনা">হোমনা</option>
+            <option value="দুলালপুর">দুলালপুর</option>
+          </select>
+        </div>
+        <button class="btn btn-brick go" onclick="searchDonors()">দাতা খুঁজুন</button>
+
+        <h3 style="margin-top:24px;">অথবা, রক্তদাতা হিসেবে নিবন্ধন করুন</h3>
+        <div class="row">
+          <input type="text" placeholder="আপনার নাম">
+          <select>
+            <option value="">রক্তের গ্রুপ</option>
+            <option>A+</option><option>A-</option><option>B+</option><option>B-</option>
+            <option>O+</option><option>O-</option><option>AB+</option><option>AB-</option>
+          </select>
+        </div>
+        <div class="row">
+          <input type="text" placeholder="মোবাইল নম্বর">
+          <input type="text" placeholder="গ্রাম / এলাকা">
+        </div>
+        <button class="btn btn-primary go" onclick="alert('ধন্যবাদ! আপনার তথ্য জমা নেওয়া হয়েছে — ডেমো সংস্করণ।')">দাতা হিসেবে যুক্ত হন</button>
+      </div>
+
+      <div>
+        <div id="donorResults" class="donor-results"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="pharmacy-note">
+  <div class="wrap aware-grid">
+    <div>
+      <h2>আমাদের লক্ষ্য</h2>
+      <p style="color:var(--muted); margin-top:10px; max-width:460px;">
+        প্রতিটি গ্রাম ও এলাকার মানুষের হাতের কাছে সহজ চিকিৎসাসেবা, ফার্মেসির তথ্য, প্রাথমিক চিকিৎসা এবং রক্তদাতা ও জরুরি সহায়তার তথ্য পৌঁছে দেওয়া।
+      </p>
+      <div class="aware-list">
+        <div class="aware-item">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#1C2621" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div>নিয়মিত হাত ধুয়ে রাখুন</div>
+        </div>
+        <div class="aware-item">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#1C2621" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div>পরিচ্ছন্ন-পরিচ্ছন্ন থাকুন, সুস্থ খাবার খান</div>
+        </div>
+        <div class="aware-item">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#1C2621" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div>জরুরি প্রয়োজনে দেরি না করে সেবা নিন</div>
+        </div>
+        <div class="aware-item">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#1C2621" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div>রক্ত দিন, জীবন বাঁচান</div>
+        </div>
+      </div>
+    </div>
+    <div class="aware-visual">
+      <svg viewBox="0 0 200 200" fill="none">
+        <circle cx="100" cy="100" r="92" stroke="#0F5C4C" stroke-width="1.5" stroke-dasharray="4 6"/>
+        <path d="M100 40s38 40 38 68a38 38 0 11-76 0c0-28 38-68 38-68z" fill="#B33A2E"/>
+        <path d="M78 108c0-14 12-24 22-24" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="name">আমাদের স্বাস্থ্যসেবা</div>
+        <p>আপনার এলাকার চিকিৎসা ও জরুরি সহায়তা — এক জায়গায়। গ্রাম ও এলাকাভিত্তিক স্বাস্থ্যসেবা সহজলভ্য করার একটি উদ্যোগ।</p>
+      </div>
+      <div class="foot-col">
+        <h5>সেবাসমূহ</h5>
+        <a href="#pharmacy">ফার্মেসি</a>
+        <a href="#care">প্রাথমিক সেবা</a>
+        <a href="#doctors">ডাক্তার</a>
+        <a href="#blood">রক্তদাতা</a>
+      </div>
+      <div class="foot-col">
+        <h5>সহায়তা</h5>
+        <a href="#emergency">জরুরি সহায়তা</a>
+        <a href="#">যোগাযোগ</a>
+        <a href="#">সচরাচর জিজ্ঞাসা</a>
+      </div>
+      <div class="foot-col">
+        <h5>জরুরি নম্বর</h5>
+        <a href="tel:999">জাতীয় জরুরি সেবা: ৯৯৯</a>
+        <a href="tel:01712345678">অ্যাম্বুলেন্স: ০১৭১২-৩৪৫৬৭৮</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© ২০২৬ আমাদের স্বাস্থ্যসেবা। সর্বস্বত্ব সংরক্ষিত।</span>
+      <span>গোপনীয়তা নীতি · ব্যবহারের শর্তাবলী</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Tabs
+  document.querySelectorAll('.tab-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.tab).classList.add('active');
+    });
+  });
+
+  // Sample donor dataset (based on submitted notes)
+  const donors = [
+    {name:'সৌরভ', bg:'A+', area:'রামপুর', union:'থোমনা', phone:'০১৪৭xxxxxx', last:'৫ই নভেম্বর দান করেছেন', available:true},
+    {name:'Anonna', bg:'B+', area:'রামপুর', union:'হোমনা', phone:'০১৮১২-৯৮৭৬৫৪', last:'উপলব্ধ', available:true},
+    {name:'Ritom', bg:'B+', area:'দুলালপুর', union:'হোমনা', phone:'০১৭৯৮-৭৬৫৪৩২', last:'আজ উপলব্ধ নয়', available:false},
+    {name:'Anika', bg:'A+', area:'দুলালপুর', union:'থোমনা', phone:'০১৭১২-৩৪৫৬৭৮', last:'উপলব্ধ', available:true},
+    {name:'রুমা বেগম', bg:'O-', area:'হোমনা', union:'হোমনা', phone:'০১৬১৯-১১২২৩৩', last:'উপলব্ধ', available:true},
+  ];
+
+  function renderDonors(list){
+    const box = document.getElementById('donorResults');
+    box.innerHTML = '';
+    if(list.length===0){
+      box.innerHTML = '<div class="empty-note">এই মুহূর্তে মিল পাওয়া যায়নি। গ্রুপ বা এলাকা পরিবর্তন করে আবার চেষ্টা করুন।</div>';
+      return;
+    }
+    list.forEach(d=>{
+      const row = document.createElement('div');
+      row.className = 'donor-row';
+      row.innerHTML = `
+        <div class="bg-chip">${d.bg}</div>
+        <div>
+          <div class="dname">${d.name}</div>
+          <div class="dmeta">${d.area} · ${d.last}</div>
+        </div>
+        <a href="tel:${d.phone.replace(/[^0-9]/g,'')}" class="btn btn-brick call">কল করুন</a>
+      `;
+      box.appendChild(row);
+    });
+  }
+  renderDonors(donors);
+
+  function searchDonors(){
+    const bg = document.getElementById('bgSelect').value;
+    const area = document.getElementById('areaSelect').value;
+    let filtered = donors.filter(d=>{
+      return (!bg || d.bg===bg) && (!area || d.area===area);
+    });
+    renderDonors(filtered);
+  }
+</script>
+
+</body>
+</html>
